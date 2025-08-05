@@ -1,61 +1,73 @@
-name: Deploy VitePress site to Pages
-
+name: Deploy VitePress to GitHub Pages
 on:
   push:
-    branches: [master] # 分支名称
+    branches: [master]  # 或改为您的默认分支名（如main）
+  workflow_dispatch:    # 支持手动触发
 
-# 设置tokenn访问权限
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# 只允许同时进行一次部署，跳过正在运行和最新队列之间的运行队列
-# 但是，不要取消正在进行的运行，因为我们希望允许这些生产部署完成
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
-  # 构建工作
   build:
     runs-on: ubuntu-latest
     steps:
+      # 1. 检出代码（使用v4并保留Git历史）
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
+          fetch-depth: 0  # 确保lastUpdated功能正常
+
+      # 2. 设置pnpm和Node.js环境（显式缓存）
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2 # 安装pnpm并添加到环境变量
+        uses: pnpm/action-setup@v3
         with:
-          version: 9.7.1 # 指定需要的 pnpm 版本
-      - name: Setup Node
-        uses: actions/setup-node@v3
+          version: 9.7.1
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: pnpm # 设置缓存
-      - name: Setup Pages
-        uses: actions/configure-pages@v3  # 在工作流程自动配置GithubPages
-      - name: Install dependencies
-        run: pnpm install # 安装依赖
-      - name: Build with VitePress
-        run: |
-          pnpm run docs:build # 启动项目
-          touch .nojekyll  # 通知githubpages不要使用Jekyll处理这个站点，不知道为啥不生效，就手动搞了
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2  # 上传构建产物
-        with:
-          path: .vitepress/dist # 指定上传的路径，当前是根目录，如果是docs需要加docs/的前缀
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
 
-  # 部署工作
+      # 3. 配置Pages环境（升级至v4）
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v4
+
+      # 4. 安装依赖并构建
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build VitePress
+        run: |
+          pnpm docs:build
+          touch docs/.vitepress/dist/.nojekyll  # 修正路径
+          
+        # 验证构建产物
+      - name: Verify build output
+        run: |
+          [ -d docs/.vitepress/dist ] || exit 1
+          [ -f docs/.vitepress/dist/.nojekyll ] || exit 1
+
+      # 5. 上传产物（使用v3并明确路径）
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/.vitepress/dist  # 根据实际项目结构调整
+
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }} # 从后续的输出中获取部署后的页面URL
-    needs: build    # 在build后面完成
-    runs-on: ubuntu-latest  # 运行在最新版本的ubuntu系统上
-    name: Deploy
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
-        id: deployment  # 指定id
-        uses: actions/deploy-pages@v2 # 将之前的构建产物部署到github pages中
+        id: deployment
+        uses: actions/deploy-pages@v4  # 必须升级至v4
