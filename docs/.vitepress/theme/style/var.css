@@ -1,0 +1,58 @@
+/* 设置标题渐变 */
+/* 定义 MiSans 字体 */
+/* 定义 MiSans 字体 - Regular (400) */
+@font-face {
+  font-family: "MiSans";
+  src: url("/MiSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 定义 MiSans 字体 - Medium (500) */
+@font-face {
+  font-family: "MiSans";
+  src: url("/MiSans-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 应用到导航栏标题 */
+.VPTitle .title {
+  font-family: "MiSans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500; /* 使用 Medium 字重 */
+  /* 可选：添加字体平滑优化 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+:root {
+    /* 图标背景 */
+  /* 设置线性渐变 */
+  --vp-home-hero-image-background-image: linear-gradient(
+    135deg,
+    #0095ff 10%,
+    #00ffbf 100%);
+/* 设置模糊度 */
+  --vp-home-hero-image-filter: blur(100px);
+  --vp-home-hero-name-color: transparent;
+  --vp-font-family-base: "MiSans", ui-sans-serif, system-ui, sans-serif;
+  --vp-home-hero-name-background: linear-gradient(
+    120deg,
+    #6dd5fa 20%,
+    #ff758c 60%,
+    #ff7eb3 100%
+    );
+  --vp-feature-icon-size: 48px; /* 调整图标大小 */
+  --vp-feature-icon-bg: transparent; /* 移除背景色 */
+}
+
+.VPFeature .icon {
+  transition: transform 0.3s;
+}
+.VPFeature:hover .icon {
+  transform: scale(1.1);
+}
+
+
