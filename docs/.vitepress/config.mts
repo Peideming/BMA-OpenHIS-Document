@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: '/BMA-OpenHIS-Document/',
   title: "蓝衣通文档中心",
   description: "BlueMedAccess蓝衣通是一个专注于开发中小医疗机构计算机程序的一个组织。这里是我们的文档中心，你在里可以知道我们项目的用法、了解我们的信息、得到开发者文档。详细的阅读文档可以有助于你的使用、二次开发。若要了解更多信息，请前往蓝衣通论坛:http://luntan-bma.tttttttttt.top/public/     我们欢迎您的到来！",
   head: [
