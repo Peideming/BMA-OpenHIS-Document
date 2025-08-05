@@ -59,6 +59,11 @@ export default defineConfig({
       }
     },
 
+    editLink: {
+      pattern: 'https://github.com/Peideming/BMA-OpenHIS-Document/edit/master/docs/:path',
+      text: '在GitHub上编辑此页'
+    },
+
     footer: {
       message: 'Released under the CC BY-NC-SA 4.0 License.',
       copyright: 'Copyright © 2025 BlueMedAccess'
