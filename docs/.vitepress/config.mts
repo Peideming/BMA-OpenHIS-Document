@@ -17,7 +17,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: '快速开始', link: '/quick-start' }
+      { text: '快速开始', link: '/quick-start' },
       { text: '联系我们', link: '/contact-us' }
     ],
 
