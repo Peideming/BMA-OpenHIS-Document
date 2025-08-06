@@ -22,7 +22,8 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: '快速开始', link: '/quick-start' },
-      { text: '联系我们', link: '/contact-us' }
+      { text: '联系我们', link: '/contact-us' },
+      { text: '特别感谢', link: '/particular-thanks' },
     ],
 
     sidebar: [
