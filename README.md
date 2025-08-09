@@ -79,6 +79,29 @@ sidebar: [
 
 ---
 
+### 🖼 图片与静态资源规范
+
+- 图片请放置在：
+  ```
+  docs/public/image/
+  ```
+- 视频请放置在（如需使用）：
+  ```
+  docs/public/video/
+  ```
+- 其他静态资源（如 PDF、附件）放置在：
+  ```
+  docs/public/
+  ```
+
+引用时使用相对路径，不包含 `/public/` 前缀，VitePress 会自动识别：
+
+```markdown
+![医保入院示例](/image/yibao-admission-example.png)
+```
+
+---
+
 ### ✍️ Emoji 与贡献者说明
 
 文档中可适量使用 emoji 提升可读性：
@@ -96,8 +119,8 @@ sidebar: [
 
 ## 👥 本文贡献者（按贡献时间排序）
 
-- 初稿撰写人的署名（撰写初稿）
-- 校对人署名（内容校对）
+- 裴新录（撰写初稿）
+- XXX（内容校对）
 ```
 
 ---
@@ -110,12 +133,9 @@ docs/
 ├── tutorials/      # 实操教程与操作指引
 ├── faq/            # 常见问题
 ├── references/     # 术语、规范、数据字典
-└── assets/         # 图片与附件（按模块建子目录）
+├── public/         # 所有静态资源（图片、视频、附件）
+└── assets/         # 保留旧资源，逐步迁移至 public/
 ```
-
-- 不强制重构已有目录，新增内容遵循上述结构  
-- 图片建议单张不超过 500KB，优先压缩  
-- 移动或重命名文件后请更新所有引用，避免 404
 
 ---
 
@@ -128,7 +148,7 @@ docs/
 - 图片命名：`模块-主题-要点.png`，如 `yibao-admission-example.png`  
 - 图片插入示例：
   ```markdown
-  ![医保入院示例界面](../assets/yibao/yibao-admission-example.png)
+  ![医保入院示例界面](/image/yibao-admission-example.png)
   ```
 - 链接使用相对路径：
   ```markdown
@@ -207,25 +227,28 @@ docs/
 
 ---
 
-## 📄 许可证
+## 📄 许可证说明
 
-- 遵循 CC BY-NC-SA 4.0 协议
-- 具体你可查阅完整协议文本（英文）与官方说明：[Creative Commons BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
----
-
-## 📜 协议核心条款
+本仓库文档遵循 CC BY-NC-SA 4.0 协议：
 
 | 条款 | 含义 | 要求 |
 |------|------|------|
-| BY（署名） | 使用者必须明确署名原作者 | 包括作者姓名、作品名称、原始链接、许可协议链接等 |
-| NC（非商业性使用） | 禁止将作品用于商业目的 | 包括直接盈利、广告、销售等行为 |
-| SA（相同方式共享） | 派生作品必须使用相同的许可协议 | 即改编后的作品也必须采用 CC BY-NC-SA 4.0 授权 |
+| BY（署名） | 使用者必须署名原作者 | 包括作者姓名、原始链接、协议说明 |
+| NC（非商业性使用） | 禁止商业用途 | 包括广告、销售、盈利性服务等 |
+| SA（相同方式共享） | 派生作品需使用相同协议 | 即改编后仍需采用 CC BY-NC-SA 4.0 授权 |
+
+协议详情请参考：[Creative Commons BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 ---
+
+## ⚠️ GitHub Actions 与缓存更新提醒
+
+- 文档上传后可能触发 GitHub Actions 报错，导致 Pages 显示异常或服务中断  
+- 请及时检查构建状态：[查看 Actions 状态](https://github.com/Peideming/BMA-OpenHIS-Document/actions)  
+- 如服务异常，请尽快修复，避免影响他人查阅  
+- 每次更新后请发送通知邮件至：`peideming132@163.com`  
+  - 作者可能因学业未及时回复，但看到邮件会尽快更新 Cloudflare 缓存
+
+---
+
 让文档真实、清晰、可复现。每一次更新，都是在为一线实施和维护争取确定性与效率。
----
-# 注意：文档上传后可能会让Actions报错，请注意查看，否则Pages会有显示异常或者服务异常等问题
-- [GithubActions](https://github.com/Peideming/BMA-OpenHIS-Document/actions)
-- 服务异常后请一定要修复，否则会影响大家查阅
-- 每次更新后请发送通知邮箱至peideming132@163.com(可能会经常不回答，因为作者学业问题，但是看见绝对会更新缓存)，以便可以即使更新Cloudflare缓存
-
