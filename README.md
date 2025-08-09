@@ -1,5 +1,8 @@
 # BMA-OpenHIS-Document 开发者文档更新指引与注意事项
 
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Peideming/BMA-OpenHIS-Document)
+![GitHub last commit](https://img.shields.io/github/last-commit/Peideming/BMA-OpenHIS-Document)
+
 本指引面向所有文档贡献者，确保文档结构统一、内容规范、更新流程清晰。仓库采用纯 Markdown 结构，直接编辑即可，无需构建工具。
 
 ---
