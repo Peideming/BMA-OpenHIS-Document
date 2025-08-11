@@ -9,6 +9,9 @@
 
 ## 🚀 快速开始
 
+The address of this document website is: https://bmadoccncdn.dpdns.org/
+本文档网站的地址为:https://bmadoccncdn.dpdns.org/
+
 ```bash
 git clone https://github.com/Peideming/BMA-OpenHIS-Document.git
 cd BMA-OpenHIS-Document
